@@ -1,0 +1,590 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Excel Training Course — Enquiry</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<style>
+  :root{
+    --green-700:#107C41;
+    --green-800:#0a5c2f;
+    --accent:#2e7d32;
+    --glass-bg: rgba(255,255,255,0.65);
+    --glass-border: rgba(255,255,255,0.5);
+    --muted:#6b7280;
+    --card-shadow: 0 6px 20px rgba(16,124,65,0.08);
+    --radius:14px;
+    --max-width:1200px;
+  }
+
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    color:#123;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(16,124,65,0.06), transparent 8%),
+                linear-gradient(180deg, #f8fff9 0%, #f5f8f7 40%, #ffffff 100%);
+    min-height:100vh;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    padding:48px 20px;
+  }
+
+  .page {
+    width:100%;
+    max-width:var(--max-width);
+  }
+
+  /* Header / Hero */
+  header.hero{
+    display:flex;
+    gap:24px;
+    align-items:center;
+    background: linear-gradient(135deg, var(--green-700), var(--green-800));
+    color:white;
+    border-radius: var(--radius);
+    padding:28px;
+    box-shadow: 0 10px 30px rgba(10,92,47,0.15);
+    margin-bottom:28px;
+  }
+  .hero .left{
+    flex:1;
+    min-width:0;
+  }
+  .logo {
+    width:72px; height:72px; border-radius:12px;
+    background: rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:800; font-size:26px; color:rgba(255,255,255,0.95);
+    box-shadow: inset 0 -6px 12px rgba(0,0,0,0.08);
+  }
+  .hero h1{
+    margin:0 0 8px;
+    font-size:1.5rem;
+    font-weight:700;
+    letter-spacing:-0.2px;
+  }
+  .hero p{
+    margin:0;
+    opacity:0.95;
+    font-size:0.98rem;
+  }
+  .hero .cta {
+    display:flex; gap:10px; align-items:center;
+  }
+  .cta .btn {
+    background:white; color:var(--green-800); padding:10px 14px;
+    border-radius:10px; text-decoration:none; font-weight:700; display:inline-flex; gap:8px;
+    align-items:center; box-shadow: 0 6px 18px rgba(16,124,65,0.12);
+    transition: transform 180ms ease, box-shadow 180ms ease;
+  }
+  .cta .btn:hover{ transform:translateY(-3px); box-shadow:0 10px 26px rgba(16,124,65,0.18) }
+
+  /* Layout grid */
+  .grid {
+    display:grid;
+    grid-template-columns: 1fr 420px;
+    gap:28px;
+    align-items:start;
+  }
+
+  /* Left column content */
+  .card {
+    background: var(--glass-bg);
+    border-radius:12px;
+    border: 1px solid var(--glass-border);
+    padding:22px;
+    box-shadow: var(--card-shadow);
+    backdrop-filter: blur(6px) saturate(110%);
+  }
+
+  .course-title { color:var(--accent); font-weight:700; margin-bottom:12px; font-size:1.1rem; }
+  .syllabus-table { width:100%; border-collapse:collapse; margin-top:12px; }
+  .syllabus-table th, .syllabus-table td {
+    text-align:left; padding:10px 12px; border-bottom:1px dashed rgba(0,0,0,0.06);
+    font-size:0.95rem;
+  }
+  .syllabus-table th {
+    background: linear-gradient(90deg, rgba(16,124,65,0.06), transparent);
+    color:var(--green-800); font-weight:700;
+  }
+
+  .images {
+    display:grid; grid-template-columns:repeat(2,1fr); gap:12px; margin-top:16px;
+  }
+  .images img{ width:100%; border-radius:10px; display:block; box-shadow:0 8px 24px rgba(15,80,40,0.06); transition: transform .25s ease }
+  .images img:hover{ transform:scale(1.03) }
+
+  /* Right column (form & offer) */
+  .side .offer {
+    display:flex; gap:12px; align-items:center; justify-content:space-between;
+    background:linear-gradient(90deg,#f6fff8,#fff); padding:14px; border-radius:10px; margin-bottom:16px;
+    border:1px solid rgba(16,124,65,0.08);
+  }
+  .price-old{ text-decoration:line-through; color:var(--muted); font-weight:600 }
+  .price-now{ color:var(--green-800); font-weight:800; font-size:1.15rem }
+
+  .btn-full {
+    display:block; width:100%; text-align:center; padding:12px 14px; border-radius:10px; text-decoration:none;
+    background: linear-gradient(90deg,var(--green-700), var(--green-800));
+    color:white; font-weight:700; box-shadow:0 8px 20px rgba(5,10,124,0.18);
+    border: none; cursor:pointer;
+  }
+  .btn-outline { display:block; width:100%; text-align:center; padding:10px; border-radius:10px; text-decoration:none;
+    background:transparent; color:var(--green-800); border:1px solid rgba(16,124,65,0.12); font-weight:700;
+  }
+
+  form .field { margin-bottom:12px; }
+  form input, form textarea, form select {
+    width:100%; padding:12px; border-radius:10px; border:1px solid rgba(0,0,0,0.08);
+    font-size:0.95rem;
+  }
+  form textarea { min-height:110px; resize:vertical }
+
+  /* Accordion (Green tabs with white text) */
+  .accordion {
+    border-radius:12px; overflow:hidden; margin-bottom:12px; border:1px solid rgba(16,124,65,0.08);
+    background:linear-gradient(180deg,#ffffff,#fbfffc);
+  }
+  .accordion-header {
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 18px; background: linear-gradient(90deg,var(--green-700), var(--green-800));
+    color:white; cursor:pointer; font-weight:700; font-size:0.98rem; transition: background .18s ease;
+  }
+  .accordion-header .title { display:flex; gap:12px; align-items:center }
+  .badge {
+    background: rgba(255,255,255,0.12); padding:6px 8px; border-radius:8px; font-weight:700; font-size:0.85rem;
+  }
+  .accordion-content {
+    max-height:0; overflow:hidden; transition: max-height .32s ease, padding .28s ease;
+    padding:0 18px; background:transparent;
+  }
+  .accordion-content.open { padding:14px 18px; }
+  .accordion-content ul{ margin:0; padding-left:18px; color:#234; }
+  .accordion-content li{ margin:8px 0; font-size:0.94rem; }
+
+  /* Footer small */
+  footer { margin-top:28px; text-align:center; color:var(--muted); font-size:0.9rem; opacity:0.9 }
+
+  /* Responsive */
+  @media (max-width:980px){
+    .grid{ grid-template-columns: 1fr; }
+    .hero{ flex-direction:column; align-items:flex-start; gap:12px }
+    .images{ grid-template-columns:1fr }
+  }
+</style>
+</head>
+<body>
+
+  <div class="page">
+
+    <!-- HERO -->
+    <header class="hero">
+      <div class="logo" aria-hidden="true">XL</div>
+      <div class="left">
+      <h1>Microsoft Excel: Beginner → Expert — 30 Days Live Course</h1>
+
+<p>Practical, hands-on Excel training with dashboards, Power Query & automation. Limited seats —</p>
+
+<div className="cta" style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
+
+<a
+  href="https://wa.me/917042731097"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="icon-btn whatsapp"
+  title="Chat on WhatsApp"
+>
+  <svg
+    viewBox="0 0 32 32"
+    width="52"
+    height="52"
+    fill="#7ED957" <!-- lighter WhatsApp green -->
+  >
+    <path d="M19.11 17.42c-.28-.14-1.64-.81-1.9-.9-.25-.09-.44-.14-.62.14-.18.28-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.5-.07-.14-.62-1.5-.85-2.06-.22-.53-.45-.46-.62-.47-.16-.01-.35-.01-.53-.01-.18 0-.46.07-.7.35-.25.28-.92.9-.92 2.2s.94 2.55 1.07 2.73c.14.18 1.85 2.83 4.48 3.96.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.2-.53-.34z"/>
+    <path d="M16.04 3C9.41 3 4 8.3 4 14.83c0 2.62.87 5.04 2.35 7l-1.54 5.63 5.77-1.5c1.89 1.02 4.05 1.6 6.36 1.6 6.63 0 12.04-5.3 12.04-11.83C28.08 8.3 22.67 3 16.04 3zm0 21.53c-2.15 0-4.14-.6-5.83-1.64l-.42-.25-3.42.9.91-3.33-.27-.43c-1.1-1.73-1.68-3.72-1.68-5.75 0-5.87 4.92-10.64 10.71-10.64 5.8 0 10.71 4.77 10.71 10.64 0 5.87-4.92 10.64-10.71 10.64z"/>
+  </svg>
+</a>
+
+<a
+  href="https://www.youtube.com/@shivexceltrainer"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="icon-btn youtube"
+  title="Visit YouTube Channel"
+>
+  <svg
+    viewBox="0 0 24 24"
+    width="52"
+    height="52"
+    fill="#FF0000" <!-- YouTube red -->
+  >
+    <path d="M23.5 6.2s-.2-1.7-.8-2.4c-.8-.9-1.7-.9-2.1-1C17.7 2.5 12 2.5 12 2.5h0s-5.7 0-8.6.3c-.4.1-1.3.1-2.1 1C.7 4.5.5 6.2.5 6.2S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.7.8 2.4c.8.9 1.9.9 2.4 1 1.7.2 7.3.3 8.3.3 0 0 5.7 0 8.6-.3.4-.1 1.3-.1 2.1-1 .6-.7.8-2.4.8-2.4s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.5 13.5V7.5l6 3-6 3z"/>
+  </svg>
+</a>
+
+        
+    </header>
+
+    <main class="grid" role="main">
+      <!-- LEFT: course overview -->
+      <section>
+        <div class="card">
+          <div class="course-title">Course Highlights</div>
+          <p style="margin-top:4px; margin-bottom:10px; color:var(--muted)">Live instructor-led classes, real business datasets, certificate after completion.</p>
+
+          <table class="syllabus-table" aria-label="Course syllabus">
+            <thead>
+              <tr><th style="width:110px">Day</th><th>Topic</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>1–5</td><td>Excel Basics, Formatting, Shortcuts</td></tr>
+              <tr><td>6–10</td><td>Functions: TEXT, DATE, LOGICAL</td></tr>
+              <tr><td>11–15</td><td>Data Handling: Filters, INDEX+MATCH</td></tr>
+              <tr><td>16–20</td><td>Charts, PivotTables & Dashboards</td></tr>
+              <tr><td>21–25</td><td>Power Query, Data Cleaning</td></tr>
+              <tr><td>26–30</td><td>Automation: Macros, VBA & Final Project</td></tr>
+            </tbody>
+          </table>
+
+          <div class="images" aria-hidden="true">
+            <img src="https://templatelab.com/wp-content/uploads/2024/06/Recruitment-Dashboard-Template-TemplateLab.com_-scaled.jpg" alt="Excel dashboard example">
+            <img src="C:\Users\Shiv\Downloads\Copy_of_Trained_Candidates_Analysis_page-0001.jpg" alt="Pivot table example">
+          </div>
+        </div>
+
+        <!-- Accordion Section -->
+        <div style="margin-top:25px">
+
+         <div class="accordion" id="acc1">
+  <div class="accordion-header" tabindex="0" role="button" aria-expanded="true" aria-controls="acc1-content">
+    <div class="title">
+      <span class="badge">Days 1–5</span>
+      <span>Excel Basics</span>
+    </div>
+    <div class="chev">+</div>
+  </div>
+  <div class="accordion-content" id="acc1-content" aria-hidden="true">
+    <ul class="no-bullets">
+      <li>Introduction to Microsoft Excel & interface</li>
+      <li>Workbook, worksheet, rows, columns, cells</li>
+      <li>Data entry (text, numbers, dates)</li>
+      <li>Cell formatting (font, alignment, number formats)</li>
+      <li>Basic operations (insert, delete, hide rows/columns)</li>
+      <li>AutoFill & Flash Fill</li>
+      <li>Basic formulas (+, −, ×, ÷)</li>
+      <li>Relative & absolute cell references</li>
+ <li> </li>
+ 
+    </ul>
+  </div>
+</div>
+
+          <div class="accordion" id="acc2">
+            <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="acc2-content">
+              <div class="title"><span class="badge">Days 6–10</span><span>Essential Functions</span></div>
+              <div class="chev">+</div>
+            </div>
+            <div class="accordion-content" id="acc2-content" aria-hidden="true">
+              <ul>
+               
+
+<li>SUM, AVERAGE, COUNT, COUNTA</li>
+
+<li>MAX & MIN</li>
+
+<li>IF function (basic to nested)</li>
+
+<li>AND / OR logical functions</li>
+
+<li>Text functions: LEFT, RIGHT, MID, LEN</li>
+
+<li>TRIM, UPPER, LOWER, PROPER</li>
+
+<li>CONCAT / TEXTJOIN</li>
+
+<li>Common formula errors & troubleshooting</li>
+ <li> </li>
+              </ul>
+            </div>
+          </div>
+
+<div class="accordion" id="acc3">
+            <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="acc3-content">
+              <div class="title"><span class="badge">Days 11–15</span><span>Data Management </span></div>
+              <div class="chev">+</div>
+            </div>
+            <div class="accordion-content" id="acc3-content" aria-hidden="true">
+              <ul>
+                <li>Sorting data (single & multiple levels)</li>
+                <li>Filtering & advanced filters</li>
+                <li>Data validation (dropdown lists)</li>
+<li>Conditional data entry rules</li>
+<li>Find & Replace</li>
+<li>Remove duplicates</li>
+<li>Text to Columns</li>
+<li>Protecting sheets & workbooks</li>
+
+ <li> </li>
+              </ul>
+            </div>
+          </div>
+
+<div class="accordion" id="acc4">
+            <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="acc4-content">
+              <div class="title"><span class="badge">Days 16–20</span><span>Visualization & Reporting </span></div>
+              <div class="chev">+</div>
+            </div>
+            <div class="accordion-content" id="acc4-content" aria-hidden="true">
+              <ul>
+                <li>Introduction to charts</li>
+                <li>Column, bar, line & pie charts</li>
+                <li>Chart formatting & customization</li>
+<li>Conditional formatting (rules, color scales, icons)</li>
+<li>Creating professional reports</li>
+<li>Introduction to Pivot Tables</li>
+<li>Basic Pivot Charts</li>
+<li>Exporting reports to PDF</li>
+
+
+ <li> </li>
+              </ul>
+            </div>
+          </div>
+
+<div class="accordion" id="acc5">
+            <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="acc5-content">
+              <div class="title"><span class="badge">Days 21–25</span><span>Data Cleaning & Transformation</span></div>
+              <div class="chev">+</div>
+            </div>
+            <div class="accordion-content" id="acc5-content" aria-hidden="true">
+              <ul>
+                <li>Handling missing & incorrect data</li>
+                <li>Date & time functions (TODAY, NOW, DATEDIF)</li>
+                <li>Lookup functions: VLOOKUP, HLOOKUP</li>
+<li>Advanced lookups: XLOOKUP</li>
+<li>INDEX & MATCH combination</li>
+<li>IFERROR usage</li>
+<li>Data consolidation techniques</li>
+<li>Preparing data for analysis</li>
+
+ <li> </li>
+              </ul>
+            </div>
+          </div>
+
+
+          <div class="accordion" id="acc6">
+            <div class="accordion-header" tabindex="0" role="button" aria-expanded="false" aria-controls="acc6-content">
+              <div class="title"><span class="badge">Days 26–30</span><span>Automation & Final Projects</span></div>
+              <div class="chev">+</div>
+            </div>
+            <div class="accordion-content" id="acc6-content" aria-hidden="true">
+              <ul>
+                <li>Excel Tables & structured references</li>
+                <li>Advanced Pivot Tables</li>
+                <li>Dashboard fundamentals</li>
+<li>Introduction to Macros</li>
+<li>Recording & editing simple macros</li>
+<li>Automating repetitive tasks</li>
+<li>Real‑world MIS & reporting project</li>
+<li>Final assessment & practical project</li>
+
+ <li> </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- RIGHT: form & offer -->
+      <aside class="side" aria-label="Enquiry and offers">
+        <div class="card" style="margin-bottom:14px;">
+          <div class="offer">
+            <div>
+              <div style="font-size:0.95rem; color:var(--muted)">Special Launch Price</div>
+              <div style="display:flex; gap:8px; align-items:baseline; margin-top:6px;">
+                <div class="price-old">₹4,999</div>
+                <div class="price-now">₹499</div>
+              </div>
+            </div>
+            <div style="text-align:right">
+              <div style="font-weight:700; color:var(--green-800)">90% OFF</div>
+              <div style="font-size:0.85rem; color:var(--muted)">Seats Limited</div>
+            </div>
+          </div>
+
+
+
+
+          <div style="margin-top:12px">
+            <a class="btn-full" href="#enquiry-form">Enroll Now</a>
+            <a class="btn-outline" href="https://www.youtube.com" target="_blank" rel="noopener" style="margin-top:10px">Watch Intro Video</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3 style="margin-top:0; margin-bottom:8px">📩 Send Enquiry</h3>
+          <form id="enquiry-form" onsubmit="handleFormSubmit(event)">
+            <div class="field">
+              <label class="sr-only" for="name">Name</label>
+              <input id="name" name="name" type="text" placeholder="Your Name" required>
+            </div>
+            <div class="field">
+              <label class="sr-only" for="email">Email</label>
+              <input id="email" name="email" type="email" placeholder="Email address" required>
+            </div>
+            <div class="field">
+              <label class="sr-only" for="phone">Phone</label>
+              <input id="phone" name="phone" type="tel" placeholder="Contact number" required pattern="[0-9+ -]{7,20}">
+            </div>
+            <div class="field">
+              <label for="message" class="sr-only">Message</label>
+              <textarea id="message" name="message" placeholder="Message (optional)"></textarea>
+            </div>
+
+            <button class="btn-full" type="submit">Submit Enquiry</button>
+            <div id="form-note" style="margin-top:10px; color:var(--muted); font-size:0.92rem; display:none">Thanks — we'll contact you soon.</div>
+          </form>
+        </div>
+      </aside>
+    </main>
+
+    <footer>
+      © <span id="year"></span> Excel Training — Designed with care • Privacy Friendly
+    </footer>
+  </div>
+
+<script>
+  // set year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Accordion behavior: allow only one open at a time
+  document.querySelectorAll('.accordion').forEach(acc => {
+    const header = acc.querySelector('.accordion-header');
+    const content = acc.querySelector('.accordion-content');
+    const chev = acc.querySelector('.chev');
+
+    function closeAllExcept(me){
+      document.querySelectorAll('.accordion').forEach(other => {
+        if(other !== me){
+          other.querySelector('.accordion-content').style.maxHeight = null;
+          other.querySelector('.accordion-content').classList.remove('open');
+          other.querySelector('.chev').textContent = '+';
+          other.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+          other.querySelector('.accordion-content').setAttribute('aria-hidden','true');
+        }
+      });
+    }
+
+    header.addEventListener('click', () => {
+      const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+      if(!isOpen) {
+        closeAllExcept(acc);
+        content.style.maxHeight = content.scrollHeight + 'px';
+        content.classList.add('open');
+        chev.textContent = '−';
+        header.setAttribute('aria-expanded','true');
+        content.setAttribute('aria-hidden','false');
+      } else {
+        content.style.maxHeight = null;
+        content.classList.remove('open');
+        chev.textContent = '+';
+        header.setAttribute('aria-expanded','false');
+        content.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // keyboard accessibility: Enter or Space toggles
+    header.addEventListener('keydown', (e) => {
+      if(e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        header.click();
+      }
+    });
+  });
+
+  // Simple form submit handler (client-side UI only)
+function handleFormSubmit(e) {
+  e.preventDefault();
+
+  const form = e.target;
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  
+  Swal.fire({
+    title: "Submitting...",
+    text: "Please wait",
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
+  fetch("https://formspree.io/f/xojvdazz", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
+    body: JSON.stringify(data),
+  })
+    .then(async (res) => {
+      const result = await res.json();
+
+      if (res.ok) {
+        Swal.fire({
+          icon: "success",
+          title: "Submitted!",
+          text: "Form submitted successfully.",
+          confirmButtonColor: "#2563eb"
+        });
+        form.reset(); // reset after success
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Submission Failed",
+          text: result?.errors?.[0]?.message || "Something went wrong!",
+          confirmButtonColor: "#dc2626"
+        });
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Network Error",
+        text: error.message,
+        confirmButtonColor: "#dc2626"
+      });
+    });
+}
+
+
+  // Close accordions when clicking outside (optional)
+  document.addEventListener('click', (e) => {
+    if(!e.target.closest('.accordion')){
+      document.querySelectorAll('.accordion').forEach(a => {
+        a.querySelector('.accordion-content').style.maxHeight = null;
+        a.querySelector('.accordion-content').classList.remove('open');
+        a.querySelector('.chev').textContent = '+';
+        a.querySelector('.accordion-header').setAttribute('aria-expanded','false');
+        a.querySelector('.accordion-content').setAttribute('aria-hidden','true');
+      });
+    }
+  });
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
