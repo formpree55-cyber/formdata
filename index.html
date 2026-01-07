@@ -45,52 +45,8 @@
     max-width:var(--max-width);
   }
 
-  /* Header / Hero */
-  header.hero{
-    display:flex;
-    gap:24px;
-    align-items:center;
-    background: linear-gradient(135deg, var(--green-700), var(--green-800));
-    color:white;
-    border-radius: var(--radius);
-    padding:28px;
-    box-shadow: 0 10px 30px rgba(10,92,47,0.15);
-    margin-bottom:28px;
-  }
-  .hero .left{
-    flex:1;
-    min-width:0;
-  }
-  .logo {
-    width:95px; height:95px; border-radius:12px;
-    background: rgba(255,255,255,0.12);
-    display:flex; align-items:center; justify-content:center;
-    font-weight:800; font-size:18px; color:rgba(255,255,255,0.95);
-    box-shadow: inset 0 -6px 12px rgba(0,0,0,0.08);
-  }
-  .hero h1{
-    margin:0 0 8px;
-    font-size:1.5rem;
-    font-weight:700;
-    letter-spacing:-0.2px;
-  }
-  .hero p{
-    margin:0;
-    opacity:0.95;
-    font-size:0.98rem;
-  }
-  .hero .cta {
-    display:flex; gap:10px; align-items:center;
-  }
-  .cta .btn {
-    background:white; color:var(--green-800); padding:10px 14px;
-    border-radius:10px; text-decoration:none; font-weight:700; display:inline-flex; gap:8px;
-    align-items:center; box-shadow: 0 6px 18px rgba(16,124,65,0.12);
-    transition: transform 180ms ease, box-shadow 180ms ease;
-  }
-  .cta .btn:hover{ transform:translateY(-3px); box-shadow:0 10px 26px rgba(16,124,65,0.18) }
-
   /* Layout grid */
+
   .grid {
     display:grid;
     grid-template-columns: 1fr 420px;
@@ -188,57 +144,227 @@
 
   <div class="page">
 
-    <!-- HERO -->
-    <header class="hero">
-      <div class="logo" aria-hidden="true">SHIV Excel House</div>
-      <div class="left">
-      <h1>Microsoft Excel: Beginner → Expert — 30 Days Live Course</h1>
-
-<p>Practical, hands-on Excel training with dashboards, Power Query & automation. Limited seats —</p>
-
-<div className="cta" style={{ marginLeft: "auto", display: "flex", gap: "12px" }}>
-
-<a
-  href="https://wa.me/917042731097"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="icon-btn whatsapp"
-  title="Chat on WhatsApp"
->
-  <svg
-    viewBox="0 0 32 32"
-    width="52"
-    height="52"
-    fill="#7ED957" <!-- lighter WhatsApp green -->
-  >
-    <path d="M19.11 17.42c-.28-.14-1.64-.81-1.9-.9-.25-.09-.44-.14-.62.14-.18.28-.71.9-.87 1.08-.16.18-.32.2-.6.07-.28-.14-1.18-.43-2.25-1.38-.83-.74-1.39-1.65-1.55-1.93-.16-.28-.02-.43.12-.57.12-.12.28-.32.42-.48.14-.16.18-.28.28-.46.09-.18.05-.35-.02-.5-.07-.14-.62-1.5-.85-2.06-.22-.53-.45-.46-.62-.47-.16-.01-.35-.01-.53-.01-.18 0-.46.07-.7.35-.25.28-.92.9-.92 2.2s.94 2.55 1.07 2.73c.14.18 1.85 2.83 4.48 3.96.63.27 1.12.43 1.5.55.63.2 1.2.17 1.65.1.5-.07 1.64-.67 1.87-1.32.23-.65.23-1.2.16-1.32-.07-.12-.25-.2-.53-.34z"/>
-    <path d="M16.04 3C9.41 3 4 8.3 4 14.83c0 2.62.87 5.04 2.35 7l-1.54 5.63 5.77-1.5c1.89 1.02 4.05 1.6 6.36 1.6 6.63 0 12.04-5.3 12.04-11.83C28.08 8.3 22.67 3 16.04 3zm0 21.53c-2.15 0-4.14-.6-5.83-1.64l-.42-.25-3.42.9.91-3.33-.27-.43c-1.1-1.73-1.68-3.72-1.68-5.75 0-5.87 4.92-10.64 10.71-10.64 5.8 0 10.71 4.77 10.71 10.64 0 5.87-4.92 10.64-10.71 10.64z"/>
-  </svg>
-</a>
-
-<a
-  href="https://www.youtube.com/@shivexceltrainer"
-  target="_blank"
-  rel="noopener noreferrer"
-  className="icon-btn youtube"
-  title="Visit YouTube Channel"
->
-  <svg
-    viewBox="0 0 24 24"
-    width="52"
-    height="52"
-    fill="#FF0000" <!-- YouTube red -->
-  >
-    <path d="M23.5 6.2s-.2-1.7-.8-2.4c-.8-.9-1.7-.9-2.1-1C17.7 2.5 12 2.5 12 2.5h0s-5.7 0-8.6.3c-.4.1-1.3.1-2.1 1C.7 4.5.5 6.2.5 6.2S0 8.1 0 10v1.9c0 1.9.5 3.8.5 3.8s.2 1.7.8 2.4c.8.9 1.9.9 2.4 1 1.7.2 7.3.3 8.3.3 0 0 5.7 0 8.6-.3.4-.1 1.3-.1 2.1-1 .6-.7.8-2.4.8-2.4s.5-1.9.5-3.8V10c0-1.9-.5-3.8-.5-3.8zM9.5 13.5V7.5l6 3-6 3z"/>
-  </svg>
-</a>
-
-        
-    </header>
 
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Excel Course Header</title>
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" integrity="sha512-7xZ8p0..." crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --primary: #0f6c3b; /* Excel green */
+      --dark: #0b3d2e;
+      --light: #f5fff9;
+      --card: #ffffff;
+    }
 
-  <!DOCTYPE html>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: "Segoe UI", Arial, sans-serif;
+      background: linear-gradient(135deg, #e8f5ee 0%, #ffffff 50%, #eef9f2 100%);
+      min-height: 100vh;
+      color: #0f172a;
+    }
+
+    /* Header */
+    header {
+      background: transparent;
+      color: #0f172a;
+      padding: 16px 24px;
+      box-shadow: none;
+    }
+
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      padding: 0;
+      border-radius: 0;
+      backdrop-filter: none;
+    }
+
+    .logo-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 10px;
+      background: #fff;
+      color: var(--primary);
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      font-size: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+
+    .logo-text {
+      display: flex;
+      flex-direction: column;
+      line-height: 1.2;
+    }
+
+    .logo-text strong { font-size: 18px; }
+    .logo-text span { font-size: 13px; opacity: 0.9; }
+
+    /* Hero section */
+
+    /* Circular logo on card */
+    .card-logo-wrap {
+      position: absolute;
+      top: -60px; /* move further up */
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: #ffffff;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.18);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 3px solid #e5e7eb;
+    }
+
+    .card-logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+
+    .hero {
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 0 24px;
+    }
+
+    .hero-card {
+      position: relative;
+      padding-top: 70px;
+      position: relative;
+      background: var(--card);
+      border-radius: 20px;
+      padding: 32px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .hero-card h1 {
+      font-size: clamp(24px, 3vw, 36px);
+      color: #0f172a;
+    }
+
+    .hero-card p {
+      font-size: 16px;
+      color: #334155;
+    }
+
+    /* Floating social icons */
+    .social-float {
+      position: fixed;
+      top: 50%;
+      right: 16px;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .social-float a {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 22px;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .social-float a:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.25);
+    }
+
+    .whatsapp { background: #25D366; }
+    .youtube { background: #FF0000; }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .header-inner { flex-direction: column; align-items: flex-start; }
+      .logo-text strong { font-size: 16px; }
+      .logo-text span { font-size: 12px; }
+      .social-float { right: 10px; }
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-inner">
+      <div class="logo">
+        <div class="logo-icon">X</div>
+        <div class="logo-text">
+          <strong>Microsoft Excel</strong>
+          <span>Beginner to Expert • 30 Days Live Course</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-card">
+      <!-- Circular Logo -->
+      <div class="card-logo-wrap">
+        <img src="logo.png" alt="Your Logo">
+      </div>
+
+      <h1>Microsoft Excel – Beginner to Expert</h1>
+      <div style="margin:8px 0 12px; display:inline-flex; align-items:center; gap:10px; background:#ecfdf3; border:1px dashed rgba(16,124,65,0.25); padding:8px 12px; border-radius:999px;">
+        <span style="text-decoration:line-through; color:#6b7280; font-weight:600;">₹4,999</span>
+        <span style="color:#065f46; font-weight:900; font-size:1.1rem;">₹999</span>
+        <span style="background:#16a34a; color:white; font-weight:800; font-size:0.8rem; padding:4px 8px; border-radius:999px;">80% OFF</span>
+      </div>
+      <p>30 Days Live Course • Practical Training • Real Projects • Certification</p>
+      <p>Master Excel from basics to advanced dashboards, formulas, automation and data analysis.</p>
+    </div>
+  </section>
+
+  <!-- Floating WhatsApp & YouTube Icons -->
+  <div class="social-float">
+    <a href="https://wa.me/919999999999" target="_blank" class="whatsapp" title="Chat on WhatsApp">
+      <i class="fab fa-whatsapp"></i>
+    </a>
+    <a href="https://www.youtube.com/@yourchannel" target="_blank" class="youtube" title="Visit our YouTube">
+      <i class="fab fa-youtube"></i>
+    </a>
+  </div>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -279,7 +405,6 @@
 </body>
 </html>
 
-  
     <main class="grid" role="main">
       <!-- LEFT: course overview -->
       <section>
@@ -303,8 +428,7 @@
 
           <div class="images" aria-hidden="true">
             <img src="https://img.freepik.com/premium-vector/chart-graph-icon-set-pie-chart-icon_102878-24.jpg" alt="Excel dashboard example">
-           <img src="https://www.youtube.com/watch?v=bdTEWyJEj7w&list=RDbdTEWyJEj7w&start_radio=1" alt="Excel dashboard example">
-            <img src="https://www.shutterstock.com/image-vector/infographic-elements-modern-presentation-infographics-600nw-2603443553.jpg" alt="Pivot table example">
+            <img src="https://www.shutterstock.com/image-vector/infographic-elements-modern-presentation-infographics-600nw-2603443553.jpg"="Pivot table example">
           </div>
         </div>
 
@@ -461,11 +585,11 @@
               <div style="font-size:0.95rem; color:var(--muted)">Special Launch Price</div>
               <div style="display:flex; gap:8px; align-items:baseline; margin-top:6px;">
                 <div class="price-old">₹4,999</div>
-                <div class="price-now">₹499</div>
+                <div class="price-now">₹999</div>
               </div>
             </div>
             <div style="text-align:right">
-              <div style="font-weight:700; color:var(--green-800)">90% OFF</div>
+              <div style="font-weight:700; color:var(--green-800)">80% OFF</div>
               <div style="font-size:0.85rem; color:var(--muted)">Seats Limited</div>
             </div>
           </div>
@@ -633,9 +757,3 @@ function handleFormSubmit(e) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
-
-
-
-
-
-
