@@ -1,3 +1,8 @@
+
+
+
+
+
 <style>
 /* Floating Excel Tab - Refined */
 .floating-excel-pro {
@@ -509,7 +514,7 @@ function closePdf() {
 
   <!-- Floating WhatsApp & YouTube Icons -->
   <div class="social-float">
-    <a href="https://wa.me/90009999999" target="_blank" class="whatsapp" title="Chat on WhatsApp">
+    <a href="https://wa.me/917042731097" target="_blank" class="whatsapp" title="Chat on WhatsApp">
       <i class="fab fa-whatsapp"></i>
     </a>
     <a href="https://www.youtube.com/@shivexceltrainer" target="_blank" class="youtube" title="Visit our YouTube">
@@ -850,6 +855,7 @@ function handleFormSubmit(e) {
   const formData = new FormData(form);
   const data = Object.fromEntries(formData.entries());
 
+  
   Swal.fire({
     title: "Submitting...",
     text: "Please wait",
@@ -859,32 +865,43 @@ function handleFormSubmit(e) {
     }
   });
 
-  fetch("https://script.google.com/macros/s/AKfycbw7vXFeWcmEmvlKgFsYYkd-y8vzRy3dlQVywmZo1esiaHwTNbfCbHh7fZRyn75tvyKEqQ/exec", {
+  fetch("https://formspree.io/f/xojvdazz", {
     method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      "Accept": "application/json"
+    },
     body: JSON.stringify(data),
   })
-    .then(res => res.json())
-    .then(result => {
-      if (result.status === "success") {
+    .then(async (res) => {
+      const result = await res.json();
+
+      if (res.ok) {
         Swal.fire({
           icon: "success",
           title: "Submitted!",
           text: "Form submitted successfully.",
+          confirmButtonColor: "#2563eb"
         });
-        form.reset();
+        form.reset(); // reset after success
       } else {
-        throw new Error("Submission failed");
+        Swal.fire({
+          icon: "error",
+          title: "Submission Failed",
+          text: result?.errors?.[0]?.message || "Something went wrong!",
+          confirmButtonColor: "#dc2626"
+        });
       }
     })
-    .catch(error => {
+    .catch((error) => {
       Swal.fire({
         icon: "error",
-        title: "Error",
+        title: "Network Error",
         text: error.message,
+        confirmButtonColor: "#dc2626"
       });
     });
 }
-
 
 
   // Close accordions when clicking outside (optional)
@@ -903,18 +920,3 @@ function handleFormSubmit(e) {
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
